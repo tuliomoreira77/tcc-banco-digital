@@ -1,0 +1,143 @@
+<div class="main-container">
+    <ngx-spinner [fullScreen]="true"></ngx-spinner>
+    <div class="header">
+        <span>Olá, {{user.primeiroNome}}</span>
+    </div>
+    <div class="content-mobile">
+        <div class="card saldo-card">
+            <span class="title">CONTA CORRENTE</span>
+            <div>
+                <span class="info">Saldo disponível</span>
+                <span class="value">R$ {{contaCorrenteInfo.saldo}}</span>
+            </div>
+        </div>
+        <div class="card fatura-card">
+            <span class="title">CARTÃO DE CREDITO</span>
+            <div>
+                <span class="info">Fatura atual</span>
+                <span class="value">R$ {{contaCorrenteInfo.montanteFaturaAtual}}</span>
+            </div>
+        </div>
+        <div class="graph">
+            <span class="title">INVESTIMENTOS</span>
+            <ngx-charts-pie-chart
+                [scheme]="colorScheme"
+                [results]="single"
+                [legend]="false"
+                [labels]="true"
+                >
+            </ngx-charts-pie-chart>
+        </div>
+    </div>
+    <div class="content">
+        <div class="logo base-width">
+            <img src="/assets/logo/1.png" alt="image">
+            <span>WOLF BANK</span>
+        </div>
+        <div class="row base-width base-height">
+            <div class="column card-container">
+                <div class="card saldo-card">
+                    <span class="title">CONTA CORRENTE</span>
+                    <div>
+                        <span class="info">Saldo disponível</span>
+                        <span class="value">R$ {{contaCorrenteInfo.saldo.toFixed(2)}}</span>
+                    </div>
+                </div>
+                <div class="card fatura-card">
+                    <span class="title">CARTÃO DE CREDITO</span>
+                    <div>
+                        <span class="info">Fatura atual</span>
+                        <span class="value">R$ {{contaCorrenteInfo.montanteFaturaAtual.toFixed(2)}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="graph">
+                <span class="title">INVESTIMENTOS</span>
+                <ngx-charts-pie-chart
+                    [scheme]="colorScheme"
+                    [results]="single"
+                    [legend]="false"
+                    [labels]="true"
+                    >
+                </ngx-charts-pie-chart>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="background">
+            <div class="a"></div>
+            <div class="b"></div>
+        </div>
+        <div class="button-container">
+            <div class="button" matRipple (click)="onClickDepositButtom()">
+                <mat-icon>paid</mat-icon>
+                <span>DEPOSITAR</span>
+            </div>
+            <div class="button" matRipple>
+                <mat-icon>credit_card</mat-icon>
+                <span>FATURAS</span>
+            </div>
+            <div class="button" matRipple (click)="onClickInvestimentoModal()">
+                <mat-icon>insights</mat-icon>
+                <span>INVESTIMENTOS</span>
+            </div>
+        </div>
+    </div>
+    <div class="deposit-container" *ngIf="getDepositModal()">
+        <div class="deposit-container-content">
+            <div class="header-d">
+                <span (click)="onCloseDepositModal()">X</span>
+            </div>
+            <div class="content">
+                <span>Digite o valor que deseja depositar: </span>
+                <div class="content-form">
+                    <span>R$ </span>
+                    <form role="form" [formGroup]="formRegister">
+                        <mat-form-field class="mat-form-field">
+                            <input matInput type="text" formControlName="valorDeposito" 
+                                [value]="formRegister.get('valorDeposito').value | currencyPipe"
+                                placeholder="VALOR" autocomplete="off">
+                        </mat-form-field>
+                    </form>
+                </div>
+                <div class= "login-form-button">
+                    <button mat-button color="primary" [disabled]="!formRegister.valid" (click)="onClickSendDeposit()" style='width: 100%; color: #2c2c2c'>
+                        <mat-icon>done</mat-icon>&nbsp;CONFIRMA
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="deposit-container" *ngIf="getInvestimentoModal()">
+        <div class="deposit-container-content">
+            <div class="header-d">
+                <span (click)="onCloseInvestimentoModal()">X</span>
+            </div>
+            <div class="content">
+                <span>Digite o valor que deseja aplicar: </span>
+                <div class="content-form-investimento">
+                    <form role="form" [formGroup]="investimentoformRegister" class="column">
+                        <mat-form-field>
+                            <mat-label>Tipo de Fundo de Investimento</mat-label>
+                            <mat-select formControlName="tipoFundo">
+                              <mat-option *ngFor="let fundo of getTiposFundos()" [value]="fundo.sigla">
+                                {{fundo.nome}}
+                              </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="mat-form-field">
+                            <input matInput type="text" formControlName="valorAplicacao" 
+                                [value]="investimentoformRegister.get('valorAplicacao').value | currencyPipe"
+                                placeholder="VALOR (R$)" autocomplete="off">
+                        </mat-form-field>
+                    </form>
+                </div>
+                <div class= "login-form-button">
+                    <button mat-button color="primary" [disabled]="!investimentoformRegister.valid" (click)="onClickSendInvestimento()" style='width: 100%; color: #2c2c2c'>
+                        <mat-icon>done</mat-icon>&nbsp;CONFIRMA
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

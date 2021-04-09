@@ -18,4 +18,8 @@ export class MovimentacaoRepository extends MongooseRepository<Movimentacao, str
         return this.model;
     }
     
+    async findLastMovimentacoes(contaCorrenteId:string): Promise<Array<Movimentacao>> {
+        let rawMov = await this.model.find({referencia: {collection: 'contas_corrente', objectId: contaCorrenteId}}).limit(20);
+        return rawMov.map(mov => mov.toObject());
+    }
 } 

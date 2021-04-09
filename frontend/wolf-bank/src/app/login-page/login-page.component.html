@@ -1,0 +1,28 @@
+<div class="main-container">
+    <div class="login-image-container">
+        <img src="/assets/logo/1.png" alt="image">
+        <span>WOLF BANK</span>
+    </div>
+    <div class="form-container">
+        <ngx-spinner [fullScreen]="false"></ngx-spinner>
+        <span>Informe seu usuário e senha:</span>
+        <form role="form" [formGroup]="formRegister">
+            <mat-form-field class="login-form-field">
+                <input matInput type="text" formControlName="usuario" 
+                    placeholder="Usuário" autocomplete="off">
+            </mat-form-field>    
+            <mat-form-field class="login-form-field">
+                <input matInput type="password" formControlName="senha" 
+                    type="password" autocomplete="off">
+                <mat-placeholder>
+                    Senha
+                </mat-placeholder>
+            </mat-form-field>
+            <div class= "login-form-button" fxLayout="row" fxLayoutAlign="center center" >
+                <button mat-button color="primary" [disabled]="!formRegister.valid" (click)="onSubmit()" style='width: 100%;'>
+                    <mat-icon>done</mat-icon>&nbsp;Entrar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

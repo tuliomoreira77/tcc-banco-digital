@@ -1,0 +1,498 @@
+$dark-background:     #2c2c2c;
+$dark-bg-lighter-5:   lighten($dark-background, 5%);
+$dark-bg-lighter-10:  lighten($dark-background, 10%);
+$dark-bg-lighter-20:  lighten($dark-background, 20%);
+$dark-bg-lighter-30:  lighten($dark-background, 30%);
+$light-bg-alpha-4:    rgba(#fafafa, 0.04);
+$light-bg-alpha-12:   rgba(#fafafa, 0.12);
+
+$primary: #ffcd2f;
+$primary-image : rgba(255,205,47,0.9);
+$warn-color: #d46060;
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+
+::ng-deep .ngx-charts text { fill: #fff !important; }
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 768px) and (orientation: portrait) {
+    .main-container {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+
+        .header {
+            width: 100%;
+            height: 100px;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-end;
+            background-color: $primary;
+            color: $dark-background;
+            font-size: 20px;
+            font-weight: 500;
+
+            span {
+                margin-left: 15px;
+                margin-bottom: 20px;
+            }
+        }
+
+        .content {
+            display: none;
+        }
+
+        .content-mobile {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            height: 60%;
+
+            .card {
+                width: 80%;
+                height: 100px;
+                border-radius: 5px;
+                margin: 10px 0px;
+                background-color: $dark-bg-lighter-10;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+
+                .title {
+                    font-size: 14px;
+                    font-weight: 100;
+                    margin: 5px 0px 5px 15px;
+                }
+
+                div {
+                    margin: 5px 0px 5px 15px;
+                    font-size: 14px;
+                    display: flex;
+                    flex-direction: column;
+
+                    .info {
+                        font-size: 11px;
+                        font-weight: 100;
+                    }
+                }
+            }
+
+            .saldo-card {
+                .value {
+                    color: $primary;
+                    font-size: 20px;
+                    font-weight: 500;
+                }
+            }
+
+            .fatura-card {
+                .value {
+                    color: $warn-color;
+                    font-size: 20px;
+                    font-weight: 500;
+                }
+            }
+        }
+
+        .footer {
+            width: 100%;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .button-container {
+                width: 80%;
+                height: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                
+                .button {
+                    width: 90px;
+                    height: 90px;
+                    background-color: $dark-bg-lighter-20;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: space-evenly;
+                    z-index: 999;
+                    border-radius: 5px;
+                    font-size: 10px;
+                    font-weight: 100;
+                    color:$primary;
+                }
+            }
+
+            .background {
+                width: 100%;
+                height: 100px;
+                position: absolute;
+                bottom: 0;
+                .a {
+                    height: 30%;
+                }
+                .b {
+                    height: 70%;
+                    background-color: $primary;
+                }
+            }
+        }
+
+        .deposit-container {
+            position: absolute;
+            width: 100vw;
+            height: 90vh;
+            top: 0;
+            left: 0;
+            z-index: 999;
+
+            .deposit-container-content {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: $dark-bg-lighter-30;
+                top: 100px;
+                display: flex;
+                flex-direction: column;
+
+                .header-d {
+                    width: 100%;
+                    height: 50px;
+                     
+                    span {
+                        position: absolute;
+                        right: 15px;
+                        top: 10px;
+                        font-size: 20px;
+                        font-weight: 900;
+                        color: $primary;
+                        cursor: pointer;
+                    }
+                }
+
+                .content {
+                    width: 100%;
+                    height: calc(100% - 50px);
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    margin-top: 20px;
+
+                    span {
+                        font-size: 18px;
+                        margin-left: 30px;
+                    }
+
+                    .content-form-investimento {
+                        margin-top: 15px;
+                        display: flex;
+                        flex-direction: column;
+                        margin-left: 25px;
+                    }
+
+                    .content-form {
+                        margin-top: 15px;
+                        display: flex;
+                        flex-direction: row;
+
+                        span {
+                            font-size: 40px;
+                            margin-top: 62px;
+                        }
+
+                        .mat-form-field {
+                            margin-left: 15px;
+                            font-size: 40px;
+                        }
+                    }
+
+                    .login-form-button {
+                        margin-left: 30px;
+                        width: 70%;
+                        height: 35px;
+                        border-radius: 5px;
+                        background-color: $primary;
+                    }
+                }
+            }
+            
+        }
+    }
+}
+
+@media (min-width: 768px) and (orientation: landscape) {
+    .main-container {
+        width: 100vw;
+        height: 100vh;
+
+        .header {
+            width: 100%;
+            height: 75px;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-end;
+            background-color: $primary;
+            color: $dark-background;
+            font-size: 20px;
+            font-weight: 500;
+
+            span {
+                margin-left: 15px;
+                margin-bottom: 20px;
+            }
+        }
+
+        .content-mobile {
+            display: none;
+        }
+
+        .content {
+            float: right;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            width: calc(100% - 100px);
+            height: 60%;
+            
+            .base-width {
+                width: 90%;
+            }
+
+            .base-height {
+                height: 80%;
+            }
+
+            .logo {
+                margin-top: 20px;
+                height: 20%;
+                background-color: $primary;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                border-radius: 5px;
+
+                img {
+                    height: 100%;
+                }
+
+                span {
+                    font-size: 20px;
+                    color: $dark-background;
+                }
+            }
+
+            .graph {
+                width: 50%;
+                height: 100%;
+                background-color: $dark-bg-lighter-10;
+                margin: 10px 0px;
+                border-radius: 5px;
+
+                .title {
+                    font-size: 14px;
+                    font-weight: 100;
+                    margin: 5px 0px 5px 15px;
+                }
+            }
+
+            .card-container {
+                width: 50%;
+                height: 100%;
+            }
+
+            .card {
+                width: 80%;
+                height: 100px;
+                border-radius: 5px;
+                margin: 10px 0px;
+                background-color: $dark-bg-lighter-10;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+
+                .title {
+                    font-size: 14px;
+                    font-weight: 100;
+                    margin: 5px 0px 5px 15px;
+                }
+
+                div {
+                    margin: 5px 0px 5px 15px;
+                    font-size: 14px;
+                    display: flex;
+                    flex-direction: column;
+
+                    .info {
+                        font-size: 11px;
+                        font-weight: 100;
+                    }
+                }
+            }
+
+            .saldo-card {
+                .value {
+                    color: $primary;
+                    font-size: 20px;
+                    font-weight: 500;
+                }
+            }
+
+            .fatura-card {
+                .value {
+                    color: $warn-color;
+                    font-size: 20px;
+                    font-weight: 500;
+                }
+            }
+        }
+
+        .footer {
+            float: left; 
+            width: 100px;
+            height: calc(100% - 75px);
+
+            .button-container {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                
+                .button {
+                    margin-top: 20px;
+                    width: 90px;
+                    height: 90px;
+                    background-color: $dark-bg-lighter-20;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: space-evenly;
+                    z-index: 999;
+                    border-radius: 5px;
+                    font-size: 10px;
+                    font-weight: 100;
+                    color:$primary;
+                }
+            }
+
+            .background {
+                width: 100px;
+                height: calc(100vh - 75px);
+                position: absolute;
+                left: 0;
+                display: flex;
+                flex-direction: row;
+                .a {
+                    width: 70%;
+                    background-color: $primary;
+                }
+                .b {
+                    width: 30%;
+                }
+            }
+        }
+
+        .deposit-container {
+            display: block;
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            z-index: 999;
+
+            .deposit-container-content {
+                position: absolute;
+                width: 400px;
+                height: 340px;
+                background: $dark-bg-lighter-30;
+                top: 100px;
+                left: calc(50vw - 200px);
+                border-radius: 10px;
+                display: flex;
+                flex-direction: column;
+
+                .header-d {
+                    width: 100%;
+                    height: 50px;
+                     
+                    span {
+                        position: absolute;
+                        right: 15px;
+                        top: 10px;
+                        font-size: 20px;
+                        font-weight: 900;
+                        color: $primary;
+                        cursor: pointer;
+                    }
+                }
+
+                .content {
+                    width: 100%;
+                    height: calc(100% - 50px);
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    margin-top: 20px;
+
+                    span {
+                        font-size: 18px;
+                        margin-left: 30px;
+                    }
+
+                    .content-form {
+                        margin-top: 15px;
+                        display: flex;
+                        flex-direction: row;
+
+                        span {
+                            font-size: 40px;
+                            margin-top: 62px;
+                        }
+
+                        .mat-form-field {
+                            margin-left: 15px;
+                            font-size: 40px;
+                        }
+                    }
+
+                    .content-form-investimento {
+                        margin-top: 15px;
+                        display: flex;
+                        flex-direction: column;
+                        margin-left: 25px;
+                    }
+
+                    .login-form-button {
+                        margin-left: 30px;
+                        width: 70%;
+                        height: 35px;
+                        border-radius: 5px;
+                        background-color: $primary;
+                    }
+                }
+            }
+            
+        }
+    }
+}

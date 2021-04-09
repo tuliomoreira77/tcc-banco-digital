@@ -30,11 +30,6 @@ export interface ContaCorrente extends BaseEntity, Id {
     usuario: string | Usuario,
     saldo: number,
     cartoes: Cartao[],
-    contaPoupanca: ContaPoupanca,
-}
-
-export interface ContaPoupanca extends BaseEntity {
-    saldo: number,
 }
 
 export interface Cartao extends BaseEntity {
@@ -79,12 +74,15 @@ export interface Movimentacao extends BaseEntity, Id {
 }
 
 export interface FundoInvestimento extends BaseEntity, Id {
+    sigla: string,
     nome: string,
     rendimento: number,
-    investidores: {
-        contaCorrete: string | ContaCorrente,
-        montante: number,
-    }[]
+}
+
+export interface Investimento extends BaseEntity, Id {
+    fundo: string | FundoInvestimento,
+    contaCorrente: string | ContaCorrente,
+    montante: number,
 }
 
 export interface Emprestimo extends BaseEntity, Id {

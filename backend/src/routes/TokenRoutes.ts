@@ -31,13 +31,13 @@ app.post("/token", requestWrapper(async (req, res) => {
 async function findAndVerifyUser(username:string, password:string) {
     let usuario = await usuarioService.getByDocumentNumber(username);
     if(!usuario) {
-        throw new BaseException(401, "Usuario inválido");
+        throw new BaseException(400, "Usuario inválido");
     }
     if(!bcrypt.compareSync(password, usuario.senha)) {
-        throw  new BaseException(401, "Senha inválida");
+        throw  new BaseException(400, "Senha inválida");
     }
     if(!usuario.ativo) {
-        throw new BaseException(401, "Sua conta esta pendente de confirmação");
+        throw new BaseException(400, "Sua conta esta pendente de confirmação");
     }
 
     return usuario;

@@ -1,4 +1,4 @@
-import { ContaCorrente, Cartao } from "../Interfaces";
+import { ContaCorrente, Cartao, Movimentacao } from "../Interfaces";
 import { TipoCartaoEnum } from '../Enuns';
 import * as CardGenerator from 'creditcard-generator';
 
@@ -32,8 +32,23 @@ export function cartaoFactory(tipo:TipoCartaoEnum, validade:Date):Cartao {
 export function getContaCorrenteDTO(contaCorrente:ContaCorrente) {
     return {
         saldo: contaCorrente.saldo,
-        montanteFaturaAtual: getTotalFaturaAtual(contaCorrente),
+        montanteFaturaAtual: getTotalFatura(),
     }
+}
+
+export function getMovimentacoesDTO(movimentacoes:Movimentacao[]) {
+    return movimentacoes.map(mov => {
+        return {
+            _id: mov._id,
+            descricao: mov.descricao,
+            valor: mov.valor,
+            dataCriacao: mov.dataCriacao,
+        }
+    });
+}
+
+function getTotalFatura() {
+    return 0;
 }
 
 function getTotalFaturaAtual(contaCorrente:ContaCorrente) {

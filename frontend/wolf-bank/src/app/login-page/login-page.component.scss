@@ -1,0 +1,133 @@
+$dark-background:     #2c2c2c;
+$dark-bg-lighter-5:   lighten($dark-background, 5%);
+$dark-bg-lighter-10:  lighten($dark-background, 10%);
+$dark-bg-lighter-20:  lighten($dark-background, 20%);
+$dark-bg-lighter-30:  lighten($dark-background, 30%);
+$light-bg-alpha-4:    rgba(#fafafa, 0.04);
+$light-bg-alpha-12:   rgba(#fafafa, 0.12);
+
+$primary: #ffcd2f;
+$primary-image : rgba(255,205,47,0.9);
+
+
+@media (max-width: 768px) and (orientation: portrait) {
+    .main-container {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .login-image-container {
+            height: 20%;
+            width: 100%;
+            background: $primary-image;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            img {
+                width: auto;
+                height: 80%;
+                margin-left: 20px;
+            }
+
+            span {
+                font-size: 25px;
+                color: $dark-background;
+            }
+        }
+
+        .form-container {
+            margin-top: 100px;
+            height: 50%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            span {
+                font-weight: 100;
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+
+                .login-form-field {
+                    width: 70vw;
+                    height: 60px;
+                }
+        
+                .login-form-button {
+                    width: 70vw;
+                    height: 35px;
+                    border-radius: 5px;
+                    background-color: $dark-bg-lighter-10;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 768px) and (orientation: landscape) {
+    .main-container {
+        width: 100vw;
+        height: 100vh;
+
+        .login-image-container {
+            width: 70vw;
+            height: 100vh;
+            float: right;
+            background: $primary-image;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            img {
+                margin-left: 100px;
+                width: auto;
+                height: 200px;
+            }
+
+            span {
+                font-size: 25px;
+                color: $dark-background;
+            }
+        }
+
+        .form-container {
+            height: 100vh;
+            width: 30vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            span {
+                font-weight: 100;
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+
+                .login-form-field {
+                    width: 70%;
+                    height: 60px;
+                }
+        
+                .login-form-button {
+                    width: 70%;
+                    height: 35px;
+                    border-radius: 5px;
+                    background-color: $dark-bg-lighter-10;
+                }
+            }
+        }
+
+        
+    }
+}

@@ -1,5 +1,5 @@
 import {Schema, Document, model} from 'mongoose';
-import { Boleto, Cartao, ContaCorrente, ContaPoupanca, Fatura, Movimentacao, Usuario } from "../../models/Interfaces";
+import { Boleto, Cartao, ContaCorrente, Fatura, FundoInvestimento, Investimento, Movimentacao, Usuario } from "../../models/Interfaces";
 
 const baseSchema = {
     dataCriacao: Date,
@@ -33,11 +33,7 @@ export const contaCorrenteSchema = new Schema<ContaCorrente & Document>({
         validade: {type: Date, required: true },
         ativo: {type: Boolean, default: false},
         faturas: [{ type: Schema.Types.ObjectId, ref: 'fatura' }],
-    })],
-    contaPoupanca: new Schema<ContaPoupanca & Document>({
-        ...baseSchema,
-        saldo: { type: Number, default: 0 },
-    }),
+    })]
 });
 
 export const faturaSchema = new Schema<Fatura & Document>({
@@ -65,10 +61,25 @@ export const boletoSchema = new Schema<Boleto & Document>({
 });
 
 export const movimentacaoSchema = new Schema<Movimentacao & Document>({
+    ...baseSchema,
     referencia: {
         objectId: { type: Schema.Types.ObjectId},
         collection: String,
     },
     descricao: String,
     valor: Number,
+});
+
+export const fundoInvestimentoSchema = new Schema<FundoInvestimento & Document>({
+    ...baseSchema,
+    sigla: String,
+    nome: String,
+    rendimento: Number,
+});
+
+export const InvestimentoSchema = new Schema<Investimento & Document>({
+    ...baseSchema,
+    fundo: { type: Schema.Types.ObjectId, ref: 'fundos_investimento'},
+    contaCorrente: String,
+    montante: Number,
 });

@@ -1,4 +1,5 @@
-import { Boleto, Cartao, ContaCorrente, Movimentacao, Usuario } from "../models/Interfaces";
+import { FundosAplicadosDTO } from "../models/DTO";
+import { Boleto, Cartao, ContaCorrente, FundoInvestimento, Investimento, Movimentacao, Usuario } from "../models/Interfaces";
 
 export interface IRepository {
     connect():any;
@@ -40,5 +41,10 @@ export interface IBoletoRepository extends NpaRepository<Boleto, string> {
 }
 
 export interface IMovimentacaoRepository extends NpaRepository<Movimentacao, string> {
+    findLastMovimentacoes(contaCorrenteId:string):Promise<Array<Movimentacao>>;
+}
 
+export interface IFundoInvestimentoRepository extends NpaRepository<Investimento, string> {
+    aplicarEmFundoDeInvestimento(contaCorrenteId:string, fundoId:string, montante:number):Promise<any>;
+    getFundosByContaCorrente(contaCorrenteId:string):Promise<Array<FundosAplicadosDTO>>;
 }
