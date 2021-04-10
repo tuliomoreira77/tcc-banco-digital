@@ -4,6 +4,7 @@ import { LoginPageComponent } from './login-page/login-page.component'
 import { UserMainScreenComponent } from './user-main-screen/user-main-screen.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginPageComponent },
   { path: 'main' , component: UserMainScreenComponent}
 ];
